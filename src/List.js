@@ -66,39 +66,56 @@ function List({ teamList }) {
   };
 
   return (
-    <>
-      <Left>
-        <Header1>Team A</Header1>
-        <ListA>
-          {arrayA.map((item) => (
-            <UlList id={item.id} key={item.id}>
-              <li onMouseOver={getIdA}>{item.name}</li>
-              {idA === item.id && (
-                <Button onClick={idA ? handleMoveA : handleMoveB}>Move</Button>
-              )}
-            </UlList>
-          ))}
-        </ListA>
-      </Left>
-      <Right>
-        <Header2>Team B</Header2>
-        <ListB>
-          {arrayB.map((item) => (
-            <UlList id={item.id} key={item.id}>
-              <li onMouseOver={getIdB}>{item.name}</li>
-              {idB === item.id && (
-                <Button onClick={idA ? handleMoveA : handleMoveB}>Move</Button>
-              )}
-            </UlList>
-          ))}
-        </ListB>
-      </Right>
-    </>
+    <Main>
+      <Paragraph>Hover on any team member to move to the other group</Paragraph>
+      <Container>
+        <Left>
+          <Header1>Team A</Header1>
+          <ListA>
+            {arrayA.map((item) => (
+              <UlList id={item.id} key={item.id}>
+                <li onMouseOver={getIdA}>{item.name}</li>
+                {idA === item.id && (
+                  <Button onClick={idA ? handleMoveA : handleMoveB}>
+                    Move
+                  </Button>
+                )}
+              </UlList>
+            ))}
+          </ListA>
+        </Left>
+        <Right>
+          <Header2>Team B</Header2>
+          <ListB>
+            {arrayB.map((item) => (
+              <UlList id={item.id} key={item.id}>
+                <li onMouseOver={getIdB}>{item.name}</li>
+                {idB === item.id && (
+                  <Button onClick={idA ? handleMoveA : handleMoveB}>
+                    Move
+                  </Button>
+                )}
+              </UlList>
+            ))}
+          </ListB>
+        </Right>
+      </Container>
+    </Main>
   );
 }
 
 export default List;
 
+const Main = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 100px;
+  flex-direction: column;
+`;
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 const Header1 = styled.h1`
   background-color: whitesmoke;
   padding: 10px;
@@ -144,4 +161,12 @@ const Right = styled.div`
 `;
 const ListB = styled.div`
   list-style-type: none;
+`;
+const Paragraph = styled.p`
+  font-size: 24px;
+  text-align: center;
+  background-color: whitesmoke;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
 `;
